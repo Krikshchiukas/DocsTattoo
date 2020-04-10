@@ -1,0 +1,40 @@
+body{
+	background-color: #c6fcff;
+	font-size: 1.5vw;
+}
+h1{
+	font-size: 5vw;
+}
+table, th, td {
+  text-align: center;
+  align: center;
+  border: 0.1vw solid black;
+  font-size: 1.5vw;
+}
+
+input[type=text] {
+	font-size: 1.5vw;
+	width: 7vw;
+}
+
+input[type=password] {
+	font-size: 1.5vw;
+	width: 7vw;
+}
+input[type=submit] {
+	font-size: 1.5vw;
+}
+
+input[type=reset] {
+	font-size: 1.5vw;
+}
+select {
+	font-size: 1.5vw;
+}
+button{
+	font-size: 1.5vw;
+}
+div{
+	text-align: center;
+	align: center;
+}

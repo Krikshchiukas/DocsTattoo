@@ -1,0 +1,51 @@
+if (!empty($_POST))
+{
+$temp = htmlentities($_POST['dcode']);
+
+if (!isset($temp)){
+	echo"first code is never entered<br>";
+	$cross = "empty";
+}
+else{
+	
+if (empty($temp)){
+		echo"code is still empty<br>";
+		$cross = "empty";
+		if (!$temp){
+			echo"failed to fill";
+			$cross = "empty";
+		}
+		else{echo "unsuccessfull login";}
+	}
+	else{$cross = $temp; echo $cross;}
+	
+}
+}
+
+$check1 = crosscheck($cross, $dcode);
+
+if (!empty($_POST))
+{
+$temp = htmlentities($_POST['dpword']);
+
+if (!isset($temp)){
+	echo"second code is never entered<br>";
+	$cross = "empty";
+}
+else{
+	
+if (empty($temp)){
+		echo"code is still empty<br>";
+		$cross = "empty";
+		if (!$temp){
+			echo"failed to fill";
+			$cross = "empty";
+		}
+		else{echo "unsuccessfull login";}
+	}
+	else{$cross = $temp; echo $cross;}
+	
+}
+}
+
+$check2 = crosscheck($cross, $dpword);

@@ -1,0 +1,108 @@
+CREATE TABLE customer
+(
+customer_ID INT(6) NOT NULL AUTO_INCREMENT,
+first_name VARCHAR(40) NOT NULL,
+last_name VARCHAR(40) NOT NULL,
+email VARCHAR(80) NOT NULL,
+address_1 VARCHAR(80) NOT NULL,
+address_2 VARCHAR(80) NOT NULL,
+region VARCHAR(40) NOT NULL,
+postcode VARCHAR(10) NOT NULL,
+password VARCHAR(30) NOT NULL,
+CONSTRAINT PK_customer PRIMARY KEY (customer_ID),
+CONSTRAINT PW_check CHECK (DATALENGTH(password) > 7)
+);
+
+CREATE TABLE orders
+(
+order_ID INT(10) NOT NULL AUTO_INCREMENT,
+placed DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+total DECIMAL(7,2) NOT NULL,
+customer_ID INT(6) NOT NULL,
+posted BOOLEAN NOT NULL DEFAULT false,
+CONSTRAINT tot_check CHECK (total > 0),
+CONSTRAINT PK_order PRIMARY KEY (order_ID),
+CONSTRAINT fk_customer FOREIGN KEY (customer_ID) REFERENCES customer(customer_ID)
+);
+
+CREATE TABLE colours
+(
+colour_ID INT(3) NOT NULL AUTO_INCREMENT,
+colour1 VARCHAR(40) NOT NULL,
+colour2 VARCHAR(40) NOT NULL,
+CONSTRAINT PK_colour PRIMARY KEY (colour_ID)
+);
+
+CREATE TABLE apparel
+(
+apparel_ID INT(4) NOT NULL AUTO_INCREMENT,
+name VARCHAR(120) NOT NULL,
+shape VARCHAR(40) NOT NULL,
+size VARCHAR(40) NOT NULL,
+colour_ID INT(3) NOT NULL,
+CONSTRAINT PK_apparel PRIMARY KEY (apparel_ID),
+CONSTRAINT fk_colours1 FOREIGN KEY (colour_ID) REFERENCES colours(colour_ID)
+);
+
+CREATE TABLE coils
+(
+coil_ID INT(2) NOT NULL AUTO_INCREMENT,
+1st_wrap INT(2) NOT NULL,
+1st_size VARCHAR(4) NOT NULL,
+2nd_wrap INT(2) NOT NULL,
+2nd_size VARCHAR(4) NOT NULL,
+CONSTRAINT PK_coil PRIMARY KEY (coil_ID)
+);
+
+
+Create Table styles
+(
+style_ID INT(3) NOT NULL AUTO_INCREMENT,
+style_name VARCHAR(120) NOT NULL,
+shape VARCHAR(80) NOT NULL,
+type VARCHAR(20) NOT NULL,
+coil_ID INT(2) NULL,
+CONSTRAINT PK_style PRIMARY KEY (style_ID),
+CONSTRAINT fk_coils FOREIGN KEY (coil_ID) REFERENCES coils(coil_ID)
+);
+
+CREATE TABLE machine
+(
+machine_ID INT(4) NOT NULL AUTO_INCREMENT,
+contact VARCHAR(80) NOT NULL,
+saddle VARCHAR(80) NOT NULL,
+magnet VARCHAR(80) NOT NULL,
+capacitor VARCHAR(120) NOT NULL,
+material VARCHAR(80) NOT NULL,
+thumb_screw VARCHAR(80) NOT NULL,
+springs VARCHAR (120) NOT NULL,
+colour_ID INT(3) NOT NULL,
+style_ID INT(3) NOT NULL,
+CONSTRAINT PK_machine PRIMARY KEY (machine_ID),
+CONSTRAINT fk_style FOREIGN KEY (style_ID) REFERENCES styles(style_ID),
+CONSTRAINT fk_colours2 FOREIGN KEY (colour_ID) REFERENCES colours(colour_ID)
+);
+
+CREATE TABLE product
+(
+product_ID INT(9) NOT NULL AUTO_INCREMENT, 
+price DECIMAL(5,2) NOT NULL,
+stock INT(2) NOT NULL,
+machine_ID INT(4) NULL,
+apparel_ID INT(4) NULL,
+CONSTRAINT PK_product PRIMARY KEY (product_ID),
+CONSTRAINT fk_machine FOREIGN KEY (machine_ID) REFERENCES machine(machine_ID),
+CONSTRAINT fk_apparel FOREIGN KEY (apparel_ID) REFERENCES apparel(apparel_ID),
+CONSTRAINT stock_check CHECK (stock >= 0)
+);
+
+CREATE TABLE cart
+(
+order_ID INT(10) NOT NULL,
+product_ID INT(9) NOT NULL,
+quantity INT(2) NOT NULL,
+CONSTRAINT PK_products PRIMARY KEY (product_ID, order_ID),
+CONSTRAINT fk_order FOREIGN KEY (order_ID) REFERENCES orders(order_ID),
+CONSTRAINT fk_product FOREIGN KEY (product_ID) REFERENCES product(product_ID),
+CONSTRAINT quantity_check CHECK (quantity >= 0)
+);

@@ -1,0 +1,73 @@
+body  {
+  background-image: url("bg.png");
+  background-color: #bdf7f9;
+  font-size: 1.5vw;
+}
+.head{
+	background-color: #03325b;
+	text-align: center;
+}
+.body{
+	 background-color: #c2e1fc;
+	 width: 80vw;
+	 text-align: center;
+	 margin: auto;
+	 height: 100%;
+}
+.banner{
+	width: 75%;
+	height: 5vw;
+	background-repeat: no-repeat;
+	text-align: center;
+	margin: auto;
+}
+h1{
+	font-size: 3vw;
+}
+.menuhold{
+	width 100%;
+}
+.menu{
+  width: 13%;
+  border:0.1vw solid #8ad6fc;
+  font-size: 1.5vw;
+  background-color: #b23325;
+  color: #8ad6fc;
+  font-style: italic;
+}
+
+.menu:hover {
+border:0.1vw solid #b23325;
+background-color: #8ad6fc;
+color: #b23325;
+font-style: normal;
+}
+.menulink{
+  font-size: 1.5vw;
+  background-color: #b23325;
+  color: #8ad6fc;
+  font-style: italic;
+}
+
+.menulink:hover {
+background-color: #8ad6fc;
+color: #b23325;
+font-style: normal;
+}
+
+.content{
+	text-align: center;
+	align: center;
+	 margin: auto;
+	 width: 100%;
+	 height: 100%;
+	 border-spacing: 1.5vw;
+	 font-size: 1.5vw;
+}
+.map{
+	width:100%;
+	height:60vh;
+}
+.widget{
+	width: 100%;
+}
